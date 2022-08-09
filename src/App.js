@@ -1,8 +1,16 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Routes, Route } from 'react-router-dom'
 
 // Import Parse minified version
 import Parse from 'parse/dist/parse.min.js';
+
+import { Header} from './components/header/Header';
+import { Home } from './components/home/Home';
+import { Cars } from './components/cars/Cars';
+
+
+
 
 
 const PARSE_APPLICATION_ID = '9nTwJRLz0Ksu1AR8mNWuEfQylbUeJp3ccmqLvzIM';
@@ -15,19 +23,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Header/>
       </header>
+      
+      <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        
+        
+      </Routes>
+      <Cars/>
+     
     </div>
   );
 }
