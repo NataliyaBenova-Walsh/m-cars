@@ -1,4 +1,6 @@
 
+
+
 h1 {
 	font-size: 2em;
 }
@@ -348,35 +350,9 @@ a:hover {
 	color: #7F7F7F;
 }
 
-/** LIST STYLE 1 */
 
-ul.style1 {
-	margin: 0px;
-	padding: 0px 0px 0px 0px;
-	list-style: none;
-}
 
-ul.style1 li {
-	padding: 10px 0px 10px 0px;
-	border-top: 1px solid #162738;
-	line-height: 160%;
-}
 
-ul.style1 a {
-	display: block;
-	padding: 0px 0px 0px 0px;
-	text-decoration: none;
-	color: #93B2A0;
-}
-
-ul.style1 a:hover {
-	text-decoration: underline;
-}
-
-ul.style1 .first {
-	border-top: none;
-	padding-top: 0px;
-}
 
 #featured-content {
 	overflow: hidden;
@@ -412,11 +388,10 @@ ul.style1 .first {
 	width: 88px;
 	padding: 5px 5px;
 	margin-right: 10px;
-	background: #107197;
+	background: #d8eaf1;
 	border-radius: 5px;
 	color: #FFFFFF;
 	text-align: center;
 	text-decoration: none;
 }
-
 

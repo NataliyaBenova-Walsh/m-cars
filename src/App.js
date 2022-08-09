@@ -1,5 +1,6 @@
 
 import './App.css';
+import './components/login/Login.css'
 import { Routes, Route } from 'react-router-dom'
 
 // Import Parse minified version
@@ -8,7 +9,7 @@ import Parse from 'parse/dist/parse.min.js';
 import { Header} from './components/header/Header';
 import { Home } from './components/home/Home';
 import { Cars } from './components/cars/Cars';
-
+import { Login } from './components/login/Login';
 
 
 
@@ -27,12 +28,13 @@ function App() {
       </header>
       
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
+        <Route path='/' element={<Home/>}> </Route>
+        <Route path='/login' element={<Login/>}></Route>
         
-        
-      </Routes>
-      <Cars/>
+      
+        </Routes>
      
+      <Cars/>
     </div>
   );
 }
