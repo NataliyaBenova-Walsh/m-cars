@@ -1,3 +1,5 @@
+School project with React. Firebase for hosting and database. Simple Spa designed for car sharing called MCars. Home, Catalog, Login, Register, Create Offer pages.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
