@@ -9,7 +9,7 @@ export const Catalog = ({cars}) => {
         
 
         {cars.length > 0 
-            ? cars.map(x => <CatalogItem key={x._objectId} car={x}/>)
+            ? cars.map(x => <CatalogItem key={x.id} car={x}/>)
             : <h3 className='noCars'>No car offers yet</h3>}
 		
 		

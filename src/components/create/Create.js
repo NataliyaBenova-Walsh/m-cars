@@ -1,12 +1,18 @@
 
 
- export const Create = () => {
+ export const Create = ({addCarHandler}) => {
+	const createOffer = (e) => {
+		e.preventDefault();
+		const carData = Object.fromEntries(new FormData(e.target));
+		console.log(carData);
+		addCarHandler(carData);
+	}
     return (
         <section className="createPage">
             <div className="create_container">
 	<div className="screen">
 		<div className="screen__content">
-			<form class="create">
+			<form class="create" onSubmit={createOffer}>
             <div className="create__field">
 					
 					<input type="text" className="create__input" name='carModel' id='carModel' placeholder="Car Model"/>
@@ -25,7 +31,7 @@
 			    </div>
 				<div className="create__field">
 					
-					<input type="textarea" className="create__input" name='desc' id='desc' placeholder="Additional information"/>
+					<textarea  className="create__input" name='desc' id='desc' placeholder="Additional information"></textarea>
 			    </div>
 				<button className="button create__submit">
 					Create offer

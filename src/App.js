@@ -3,6 +3,7 @@ import './App.css';
 import './components/login/Login.css';
 import './components/register/Register.css';
 import './components/create/Create.css';
+import './components/catalog/Catalog.css';
 import { Routes, Route } from 'react-router-dom'
 
 
@@ -25,18 +26,25 @@ import {collection, getDocs} from 'firebase/firestore'
 
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const usersCollRef = collection(db, "users");
+  const [cars, setCars] = useState([]);
+  const carsCollRef = collection(db, "cars");
 
   useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollRef);
+    const getCars = async () => {
+      const data = await getDocs(carsCollRef);
       console.log(data.docs);
-      setUsers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      setCars(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
       
     }
-    getUsers();
-  });
+    getCars();
+  }, []);
+
+  const addCarHandler = (carData) => {
+    setCars(state => [
+      ...state,
+      carData
+    ])
+  };
   
   return (
     <div className="App">
@@ -48,8 +56,8 @@ function App() {
         <Route path='/' element={<Home/>}> </Route>
         <Route path='/login' element={<Login/>}> </Route>
         <Route path='/register' element={<Register/>}> </Route>
-        <Route path='/create' element={<Create/>}> </Route>
-        <Route path='/catalog' element={<Catalog/>}> </Route>
+        <Route path='/create' element={<Create addCarHandler={addCarHandler}/>}> </Route>
+        <Route path='/catalog' element={<Catalog cars={cars}/>}> </Route>
       
       </Routes>
      

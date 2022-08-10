@@ -354,33 +354,6 @@ a:hover {
 
 
 
-#featured-content {
-	overflow: hidden;
-	width: 1000px;
-	margin: 0px auto;
-	padding: 30px;
-}
-
-#featured-content h2 {
-	padding: 0px 0px 20px 0px;
-	font-size: 30px;
-}
-
-#featured-content #column1 {
-	float: left;
-	width: 300px;
-	margin-right: 50px;
-}
-
-#featured-content #column2 {
-	float: left;
-	width: 300px;
-}
-
-#featured-content #column3 {
-	float: right;
-	width: 300px;
-}
 
 .button a {
 	display: block;
