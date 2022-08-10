@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const CatalogItem = ({ car }) => {
     return (
-        <div clasName="car-container">
+        <div className="car-container">
             <p><img src={car.imgUrl} width="300" height="150" alt="" /></p>
 			<h2>Model: {car.model}</h2>
 			<h3>Price from: {car.price} </h3>
