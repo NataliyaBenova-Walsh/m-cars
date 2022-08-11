@@ -7,8 +7,6 @@ import './components/catalog/Catalog.css';
 import { Routes, Route } from 'react-router-dom'
 
 
-
-
 import { Header} from './components/header/Header';
 import { Home } from './components/home/Home';
 
@@ -17,6 +15,7 @@ import { Register } from './components/register/Register';
 import { Create } from './components/create/Create';
 import { Catalog } from './components/catalog/Catalog';
 import { useEffect, useState } from 'react';
+import { CarDetails } from './components/details/Details'
 
 import { db } from './firebase-config';
 import {collection, getDocs} from 'firebase/firestore'
@@ -32,7 +31,7 @@ function App() {
   useEffect(() => {
     const getCars = async () => {
       const data = await getDocs(carsCollRef);
-      console.log(data.docs);
+   
       setCars(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
       
     }
@@ -58,7 +57,7 @@ function App() {
         <Route path='/register' element={<Register/>}> </Route>
         <Route path='/create' element={<Create addCarHandler={addCarHandler}/>}> </Route>
         <Route path='/catalog' element={<Catalog cars={cars}/>}> </Route>
-      
+        <Route path='/catalog/:carId' element={<CarDetails/>} />
       </Routes>
      
      

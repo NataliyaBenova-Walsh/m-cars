@@ -1,41 +1,62 @@
-
+import {db} from '../../firebase-config';
+import {collection, addDoc, Timestamp} from 'firebase/firestore';
 
  export const Create = ({addCarHandler}) => {
-	const createOffer = (e) => {
+	const createOffer = async (e) => {
 		e.preventDefault();
 		const carData = Object.fromEntries(new FormData(e.target));
 		console.log(carData);
+		try {
+			await addDoc(collection(db, 'cars'), {...carData, created: Timestamp.now()});
+			
+		} catch(err) {
+			alert(err)
+		}
+		
 		addCarHandler(carData);
 	}
     return (
         <section className="createPage">
             <div className="create_container">
-	<div className="screen">
-		<div className="screen__content">
-			<form class="create" onSubmit={createOffer}>
-            <div className="create__field">
-					
-					<input type="text" className="create__input" name='carModel' id='carModel' placeholder="Car Model"/>
-			</div>
-            <div className="create__field">
-					
-					<input type="number" className="create__input" name='price' id='price' placeholder="Price"/>
-			</div>
-                <div className="create__field">
-					
-					<input typeName="text" class="register__input" name='city' id='city' placeholder="City"/>
-				</div>
-				<div className="create__field">
-					
-					<input type="text" className="create__input" name='imgUrl' id='imgUrl' placeholder="Image URL"/>
-			    </div>
-				<div className="create__field">
-					
-					<textarea  className="create__input" name='desc' id='desc' placeholder="Additional information"></textarea>
-			    </div>
-				<button className="button create__submit">
-					Create offer
-				</button>				
+				<div className="screen">
+					<div className="screen__content">
+						<form class="create" onSubmit={createOffer}>
+            				<div className="create__field">
+								<input type="text" 
+								className="create__input" 
+								name='carModel' 
+								id='carModel' 
+								placeholder="Car Model"/>
+							</div>
+            				<div className="create__field">
+								<input type="number" 
+								className="create__input" 
+								name='price' 
+								id='price' 
+								placeholder="Price"/>
+							</div>
+                			<div className="create__field">
+								<input typeName="text"
+								 class="register__input" 
+								 name='city' 
+								 id='city'
+								  placeholder="City"/>
+							</div>
+							<div className="create__field">
+							<input type="text"
+								className="create__input"
+								name='imgUrl'
+								id='imgUrl'
+								placeholder="Image URL"/>
+			    			</div>
+							<div className="create__field">
+								<textarea  className="create__input"
+								name='desc'
+								id='desc' 
+								placeholder="Additional information">
+								</textarea>
+			    			</div>
+				<button className="button create__submit">Create offer</button>				
 			</form>
         
 		</div>

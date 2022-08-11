@@ -1,6 +1,7 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "@firebase/firestore";
+import { getFirestore, query, getDocs, collection, addDoc } from "@firebase/firestore";
+import { signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword, signOut} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBh6jBiwWkl-0z8iwzvE2RrdtW4Z68UA_M",
@@ -14,5 +15,52 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+ const db = getFirestore(app);
+ const auth = getAuth(app);
 
+const signUp = async (email, password) => {
+  try {
+    const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredentials.user;
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName
+    });
+    return true;
+  } catch (err) {
+    console.log(err);
+    
+  }
+};
+
+const signIn = async (email, password) => {
+  try {
+    const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredentials.user;
+    
+    return true;
+  } catch (err) {
+    console.log(err);
+   
+  }
+};
+
+const logout = async () => {
+  try {
+    await signOut(auth);
+    return true;
+  } catch (err) {
+    return false;
+  }
+ 
+};
+
+export {
+  auth,
+  db,
+ signIn,
+ logout,
+ signUp
+};
