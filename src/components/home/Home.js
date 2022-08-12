@@ -1,6 +1,8 @@
 
 import image1 from './woman-car-key.jpg';
 import image2 from './img05.jpg';
+import styles from './Home.module.css';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
 	
@@ -13,7 +15,7 @@ export const Home = () => {
 		</div>
 		<div className="heroContainer">
 			<div className="imgContainer">
-				<img src={image1} alt="woman" width="550" height="350"/>
+				<img src={image1} className={styles.heroImg} alt="woman" width="500" height="300"/>
 			</div>
 		</div>
 		
@@ -28,7 +30,7 @@ export const Home = () => {
 						<p>The Mcars app makes it easy to discover, book and unlock affordable vehicles from owners in your area. Take your pick from dazzling electric city cars to family SUVs with plenty of storage. Skip the counter today and join the car sharing revolution.</p>
                     
 					
-						<div className="links"><a href="/about" className="more">Read More</a><a href="/register" title="b0x" className="comments">Register</a></div>
+						<div className="links"><Link to="/register" className="registerBtn">Register</Link></div>
 					</div>
 				</div>
 			</div>
