@@ -14,7 +14,7 @@ export const CarDetails = ({ car }) => {
 			<h3>Price from: {car.price} </h3>
             <h4>Location: {car.city}</h4>
 			
-			<div className="detils-btns">
+			<div className="details-btns">
                 <Link>Contact the owner</Link>
                 <Link>Edit</Link>
                 <Link>Delete</Link>

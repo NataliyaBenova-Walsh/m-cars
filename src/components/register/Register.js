@@ -23,6 +23,7 @@ export const Register = () => {
 	if (password != confirmPassword) {
 		alert ("Passwords do not match");
 	} else {*/
+
 	
 	addDoc(usersCollRef, {
 		firstName: data.firstName,
@@ -48,52 +49,53 @@ export const Register = () => {
 					
 						<form onSubmit={submit} className="register">
             				<div className="register__field">
+								<label className='register__label' htmlFor="firstName">First name:</label>
 								<input type="text"
 									className="register__input" 
 									name='firstName' 
 									id='firstName' 
-									placeholder="First Name"
+									
 									
 									onChange={(e)=>(handleInput(e))}
 									/>
 				</div>
                 <div className="register__field">
+				<label className='register__label' htmlFor="lastName">Last name:</label>
 					<input type="text" 
 					className="register__input"
 					 name='lastName' 
 					 id='lastName'
-					  placeholder="Last Name"
+					
 					  
 					  onChange={(e)=>(handleInput(e))} />
 				</div>
                 <div className="register__field">
+				<label className='register__label' htmlFor="email">Email:</label>
 					<input typeName="email" 
 					class="register__input"
 					 name='email' 
 					 id='email'
-					  placeholder="Email" 
-					  
-					  onChange={(e)=>(handleInput(e))}/>
+					 onChange={(e)=>(handleInput(e))}/>
 				</div>
                
 				
 				<div className="register__field">
-					
+				<label className='register__label' htmlFor="password">Password:</label>
 					<input typeName="password" 
 					class="register__input" 
 					name='password' 
 					id='password' 
-					placeholder="Password"
+				
 					
 					onChange={(e)=>(handleInput(e))}/>
 				</div>
                 <div className="register__field">
-					
+				<label className='register__label' htmlFor="confirmPassword">Confirm password:</label>
 					<input typeName="password"
 					 class="register__input" 
 					 name='confirmPassword'
 					  id='confirmPassword' 
-					  placeholder="Confirm Password" 
+					
 					 
 					  />
 				</div>

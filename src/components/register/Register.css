@@ -20,6 +20,7 @@
 	height: 600px;
 	width: 360px;	
 	box-shadow: 0px 0px 24px #107197;
+	border-radius: 24px;
 }
 
 .screen__content {
@@ -103,7 +104,9 @@
 	width: 75%;
 	transition: .2s;
 }
-
+.register__label {
+	padding-left: 8px;
+}
 .register__input:active,
 .register__input:focus,
 .register__input:hover {
@@ -111,23 +114,7 @@
 	border-bottom-color: #107197;
 }
 
-.register__submit {
-	background: #fff;
-	font-size: 14px;
-	margin-top: 30px;
-	padding: 16px 20px;
-	border-radius: 26px;
-	border: 1px solid #D4D3E8;
-	text-transform: uppercase;
-	font-weight: 700;
-	display: flex;
-	align-items: center;
-	width: 50%;
-	color: #0a445b;
-	box-shadow: 0px 2px 2px #107197;
-	cursor: pointer;
-	transition: .2s;
-}
+
 
 .register__submit:active,
 .register__submit:focus,
@@ -138,18 +125,18 @@
 
 
 .isUser {
-    background: none;
+	background: none;
 	padding: 10px;
-	padding-left: 24px;
+	padding-left: 18px;
 	font-weight: 700;
 	width: 75%;
 	transition: .2s;
-    margin: 24px auto auto auto;
+    margin: 12px auto auto auto;
     color: #fff;
     text-shadow: black;
     text-decoration: none;
 }
-.notUser a {
+.isUser a {
     color: #fff;
 }
 

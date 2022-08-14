@@ -22,39 +22,41 @@ import {collection, addDoc, Timestamp} from 'firebase/firestore';
 					<div className="screen__content">
 						<form class="create" onSubmit={createOffer}>
             				<div className="create__field">
+								<label htmlFor="carModel" className='createLabel'>Car model:</label>
 								<input type="text" 
 								className="create__input" 
 								name='carModel' 
-								id='carModel' 
-								placeholder="Car Model"/>
+								id='carModel'/>
 							</div>
             				<div className="create__field">
+							<label htmlFor="price" className='createLabel'>Price per day:</label>
 								<input type="number" 
 								className="create__input" 
 								name='price' 
-								id='price' 
-								placeholder="Price"/>
+								id='price' />
 							</div>
                 			<div className="create__field">
+							<label htmlFor="city" className='city'>City:</label>
 								<input typeName="text"
-								 class="register__input" 
+								 class="create__input" 
 								 name='city' 
 								 id='city'
-								  placeholder="City"/>
+								  />
 							</div>
 							<div className="create__field">
+							<label htmlFor="imgUrl" className='createLabel'>Image URL:</label>
 							<input type="text"
 								className="create__input"
 								name='imgUrl'
 								id='imgUrl'
-								placeholder="Image URL"/>
+								/>
 			    			</div>
 							<div className="create__field">
+							<label htmlFor="desc" className='createLabel'>Description:</label>
 								<textarea  className="create__input"
 								name='desc'
 								id='desc' 
-								placeholder="Additional information">
-								</textarea>
+								/>
 			    			</div>
 				<button className="button create__submit">Create offer</button>				
 			</form>

@@ -5,20 +5,21 @@ import './components/register/Register.css';
 import './components/create/Create.css';
 import './components/catalog/Catalog.css';
 import { Routes, Route } from 'react-router-dom'
-
+import { useEffect, useState } from 'react';
+import { db } from './firebase-config';
+import {collection, getDocs} from 'firebase/firestore'
 
 import { Header} from './components/header/Header';
 import { Home } from './components/home/Home';
-
+import { Footer } from './components/footer/Footer';
 import { Login } from './components/login/Login';
 import { Register } from './components/register/Register';
 import { Create } from './components/create/Create';
 import { Catalog } from './components/catalog/Catalog';
-import { useEffect, useState } from 'react';
+
 import { CarDetails } from './components/details/Details'
 
-import { db } from './firebase-config';
-import {collection, getDocs} from 'firebase/firestore'
+
 
 
 
@@ -47,9 +48,9 @@ function App() {
   
   return (
     <div className="App">
-      <header className="App-header">
+      
         <Header/>
-      </header>
+      
       
       <Routes>
         <Route path='/' element={<Home/>}> </Route>
@@ -60,7 +61,7 @@ function App() {
         <Route path='/catalog/:carId' element={<CarDetails/>} />
       </Routes>
      
-     
+      <Footer />
     </div>
   );
 }

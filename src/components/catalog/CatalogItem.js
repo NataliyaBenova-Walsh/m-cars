@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
-
+import styles from './Catalog.module.css';
 export const CatalogItem = ({ car }) => {
     
     return (
         <div className="car-container">
-            <p><img src={car.imgUrl} width="300" height="150" alt="" /></p>
-			<h2>Model: {car.carModel}</h2>
-			<h3>Price from: {car.price} </h3>
-            <h4>Location: {car.city}</h4>
+            <div className='car-img-container'><img src={car.imgUrl} className={styles.carImg} width="300" height="150" alt="" /></div>
+            <div className='car-info'>
+                <h2>Model: <span className='bold'>{car.carModel}</span></h2>
+			    <h3>Price from: <span className='bold'>{car.price} </span>&euro; per day </h3>
+                <h4>Location: <span className='bold'>{car.city}</span></h4>
+                <div className="detailsLink"><Link to={`/catalog/${car.id}`}>Details</Link></div>
+            </div>
 			
-			<p className="detailsLink"><Link to={`/catalog/${car.id}`}>Details</Link></p>
+			
+			
 		</div>
     );
 }

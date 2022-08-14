@@ -34,23 +34,24 @@ export const Login = () => {
 		<div className="screen__content">
 			<form onSubmit={handleSubmit} className="login" >
 				<div className="login__field">
-					<i className="login__icon fas fa-user"></i>
+					
+					<label htmlFor="email" className='loginLabel'>Email:</label>
 					<input type="text" 
 					className="login__input" 
 					name='email' 
 					id='email' 
-					placeholder="Email"
+					
 					value={email}
 					onChange={(e) => setEmail(e.target.value)}/>
 					
 				</div>
 				<div className="login__field">
-					<i className="login__icon fas fa-lock"></i>
+				<label htmlFor="email" className='loginLabel'>Password:</label>
 					<input typeName="password" 
 					class="login__input" 
 					name='password' 
 					id='password' 
-					placeholder="Password"
+					
 					value={password}
 					onChange={(e) => setPassword(e.target.value)}/>
 				</div>

@@ -4,7 +4,18 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family: Lato, sans-serif;
+	background: #FFFFFF;
+	font-family: 'Lato', sans-serif;
+	font-size: 13px;
+	
+}
+
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-weight: 200;
+	color: #222222;
 }
 
 
@@ -36,15 +47,15 @@ p, ul, ol {
 
 #header-wrapper {
 	overflow: hidden;
-	height: 120px;
+	height: 100px;
 	background: #107197;
-	border-radius: 36px;
+	border-radius: 30px;
 }
 
 #header {
-	overflow: hidden;
+	
 	width: 100%;
-	height: 120px;
+	height: 100px;
 	margin: 0 auto;
 	padding: 0px 0px;
 	display: flex;
@@ -64,10 +75,10 @@ p, ul, ol {
 
 
 #logo h1 {
-	line-height: 120px;
+	
 	font-weight: bold;
 	font-size: 3em;
-	padding-left: 24px;
+	padding: 24px;
 	text-shadow: 1px 1px #38495a;
 }
 
@@ -91,7 +102,7 @@ p, ul, ol {
 .menu {
 	
 	width: 500px;
-	height: 90px;
+	
 	margin: 0 0 0 auto;
 	padding: 0;
 }
@@ -99,7 +110,7 @@ p, ul, ol {
 .menu ul {
 	
 	margin: 0;
-	padding: 50px 0px 0px 0px;
+	padding: 36px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
 	display: flex;
@@ -141,19 +152,17 @@ p, ul, ol {
 	border-radius: 5px;
 }
 .hero {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  
   padding: 24px;
 }
 .heroContainer {
   
-  width: 50%;
+	margin-top: 48px;
   height: 300px;
 }
 
 .hero h1 {
-  font-size: 4em;
+  font-size: 5em;
   font-weight: bolder;
   color: #222222;
   padding: 24px;
@@ -168,15 +177,16 @@ p, ul, ol {
   font-size: 16px;
 }
 .imgContainer {
-	width: 50%;
+	width: 80%;
 	border-radius: 20px;
+	margin: 0 auto;
 }
 
 /* Page */
 
 #page {
-	width: 1000px;
-	margin: 0 auto;
+	width: 100%;
+	margin: 24px;
 	padding: 60px 0px 0px 0px;
 	background: #FFFFFF;
 }
@@ -185,92 +195,63 @@ p, ul, ol {
 
 #content {
 	margin: 0 auto;
-	width: 60%;
-	padding: 0px 0px 0px 0px;
 }
 
-.post {
-	overflow: hidden;
-	margin-bottom: 40px;
-}
 
-.post .title {
-	padding: 7px 0px 40px 0px;
-	
-	
-}
 
-.post .title a {
-	border: none;
-	text-decoration: none;
+.hero-info-desc {
+	padding: 24px;
+	margin-top: 36px;
+}
+.hero-info-desc strong {
 	color: #107197;
-	font-size: 24px;
 	font-weight: bold;
-	border-radius: 26px;
-	border: 1px solid #107197;
-	padding: 6px 16px ;
-	cursor: pointer;
-	box-shadow: 0px 2px 2px #107197;
 }
-.post .registerBtn {
+
+.links {
+
+	margin-left: 18px;
+
+}
+
+.links .link {
+	background: #fff;
+	font-size: 14px;
+	margin: 30px;
+	padding: 16px 20px;
+	border-radius: 12px;
+	border: 1px solid #107197;
+	text-transform: uppercase;
+	font-weight: 700;
+	
+	width: 25%;
+	color: #107197;
+	box-shadow: 0px 2px 2px #107197;
+	cursor: pointer;
+	transition: .2s;
+	
+	text-align: center;
+	text-decoration: none;
+}
+
+/*Buttons*/
+.button {
 	background: #fff;
 	font-size: 14px;
 	margin-top: 30px;
 	padding: 16px 20px;
-	border-radius: 26px;
-	border: 1px solid #D4D3E8;
+	border-radius: 12px;
+	border: 1px solid #107197;
 	text-transform: uppercase;
 	font-weight: 700;
 	display: flex;
 	align-items: center;
 	width: 25%;
-	color: #0a445b;
+	color: #107197;
 	box-shadow: 0px 2px 2px #107197;
 	cursor: pointer;
 	transition: .2s;
 }
-.post .meta {
-	margin-bottom: 30px;
-	padding: 10px 0px 0px 0px;
-	text-align: left;
-	font-family: 'Abel', sans-serif;
-	font-size: 16px;
-	font-weight: 300;
-}
-
-.post .meta .date {
-	float: left;
-}
-
-.post .meta .posted {
-	float: right;
-}
-
-
-.post .entry {
-	padding: 0px 0px 40px 0px;
-	text-align: justify;
-}
-
-.links {
-	padding-top: 20px;
-	margin-bottom: 30px;
-}
-
-.links .btn {
-	
-	
-	width: 88px;
-	padding: 6px 16px;
-	margin: 0, 16px;
-	background: #107197;
-	border-radius: 5px;
-	color: #FFFFFF;
-	text-align: center;
-	text-decoration: none;
-}
-
-
 
 
 
@@ -332,38 +313,23 @@ p, ul, ol {
 
 /* Footer */
 
-#footer {
-	height: 30px;
+.footer-container {
+	height: 24px;
 	margin: 0 auto;
-	padding: 50px 0 15px 0;
+	padding: 15px 0;
 	background: #107197;
+	border-radius: 18px;
+	width: 95%;
+	margin: 18px auto;
 }
 
-#footer p {
+.footer-info {
 	margin: 0;
-	padding-top: 10px;
+	padding: 10px;
 	letter-spacing: 1px;
 	line-height: normal;
 	text-align: center;
-	color: #80a0ad;
-}
-
-#footer a {
-	color: #bbd0d8;
-}
-
-
-
-
-
-.list-style1 {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-.list-style1 a {
-	color: #7F7F7F;
+	color: #fff;
 }
 
 
@@ -371,16 +337,11 @@ p, ul, ol {
 
 
 
-.button a {
-	display: block;
-	float: left;
-	width: 88px;
-	padding: 5px 5px;
-	margin-right: 10px;
-	background: #d8eaf1;
-	border-radius: 5px;
-	color: #FFFFFF;
-	text-align: center;
-	text-decoration: none;
-}
+
+
+
+
+
+
+
 
