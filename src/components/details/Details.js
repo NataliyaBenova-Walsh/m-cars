@@ -42,8 +42,8 @@ export const CarDetails = ({ car}) => {
 			
 			<div className="details-links">
                 <Link className='details-link' to="/contact">Contact the owner</Link>
-                <Link className='details-link' to={`/catalog/${carId}/edit`}>Edit</Link>
-                <Link className='details-link' to="/delete">Delete</Link>
+                <Link className='details-link' to={`/edit/${carId}`}>Edit</Link>
+                <Link className='details-link' to={`/delete/${carId}`}>Delete</Link>
             </div>
 		</div>
     );

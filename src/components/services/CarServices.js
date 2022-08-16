@@ -1,6 +1,6 @@
 import { db } from '../../firebase-config';
 import {collection, addDoc, Timestamp} from 'firebase/firestore';
-import { getDoc, updateDoc, DeleteDoc, getDocs, doc } from 'firebase/firestore';
+import { getDoc, updateDoc, deleteDoc, getDocs, doc } from 'firebase/firestore';
 
 export const getCarById = async (id) => {
 
@@ -20,15 +20,21 @@ else {
 }
 }
 
-export const editCar = async(carData, carId) => {
-    const carDocRef = doc(db, 'cars', carId);
+export const editCar = async(car, newCar) => {
+    const carDocRef = doc(db, 'cars', car.id);
     try {
-        await updateDoc(carDocRef, carData);
+        await updateDoc(carDocRef, {newCar});
         
 
     } catch (err) {
         alert(err);
     }
+    
+}
+
+export const deleteCar = async (car) => {
+    const carRef = doc(db, "cars", car.id);
+    await deleteDoc(carRef);
 }
 
 export const createCarOffer = async ({car}) => {
