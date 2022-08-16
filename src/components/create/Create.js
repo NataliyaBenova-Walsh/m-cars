@@ -1,13 +1,19 @@
-import {db} from '../../firebase-config';
-import {collection, addDoc, Timestamp} from 'firebase/firestore';
+import { createCarOffer } from "../services/CarServices";
+import { useState } from "react";
 
  export const Create = ({addCarHandler}) => {
+	const [carData, setCarData] = useState({});
+	const handleInput = (e) => {
+		let newInput = {[e.target.name] : e.target.value};
+		setCarData({...carData, ...newInput});
+	}
+	
 	const createOffer = async (e) => {
 		e.preventDefault();
-		const carData = Object.fromEntries(new FormData(e.target));
+		//const carData = Object.fromEntries(new FormData(e.target));
 		console.log(carData);
 		try {
-			await addDoc(collection(db, 'cars'), {...carData, created: Timestamp.now()});
+			await createCarOffer(carData);
 			
 		} catch(err) {
 			alert(err)
@@ -26,14 +32,16 @@ import {collection, addDoc, Timestamp} from 'firebase/firestore';
 								<input type="text" 
 								className="create__input" 
 								name='carModel' 
-								id='carModel'/>
+								id='carModel'
+								onChange={(e)=>(handleInput(e))}/>
 							</div>
             				<div className="create__field">
 							<label htmlFor="price" className='createLabel'>Price per day:</label>
 								<input type="number" 
 								className="create__input" 
 								name='price' 
-								id='price' />
+								id='price' 
+								onChange={(e)=>(handleInput(e))}/>
 							</div>
                 			<div className="create__field">
 							<label htmlFor="city" className='city'>City:</label>
@@ -41,7 +49,7 @@ import {collection, addDoc, Timestamp} from 'firebase/firestore';
 								 class="create__input" 
 								 name='city' 
 								 id='city'
-								  />
+								 onChange={(e)=>(handleInput(e))}/>
 							</div>
 							<div className="create__field">
 							<label htmlFor="imgUrl" className='createLabel'>Image URL:</label>
@@ -49,14 +57,14 @@ import {collection, addDoc, Timestamp} from 'firebase/firestore';
 								className="create__input"
 								name='imgUrl'
 								id='imgUrl'
-								/>
+								onChange={(e)=>(handleInput(e))}/>
 			    			</div>
 							<div className="create__field">
 							<label htmlFor="desc" className='createLabel'>Description:</label>
 								<textarea  className="create__input"
 								name='desc'
 								id='desc' 
-								/>
+								onChange={(e)=>(handleInput(e))}/>
 			    			</div>
 				<button className="button create__submit">Create offer</button>				
 			</form>

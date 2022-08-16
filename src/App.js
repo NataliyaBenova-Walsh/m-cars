@@ -4,10 +4,13 @@ import './components/login/Login.css';
 import './components/register/Register.css';
 import './components/create/Create.css';
 import './components/catalog/Catalog.css';
+import './components/details/Details.css';
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-import { db } from './firebase-config';
-import {collection, getDocs} from 'firebase/firestore'
+import { db, auth } from './firebase-config';
+import {collection, getDocs} from 'firebase/firestore';
+
+import { onAuthStateChanged } from 'firebase/auth';
 
 import { Header} from './components/header/Header';
 import { Home } from './components/home/Home';
@@ -16,8 +19,9 @@ import { Login } from './components/login/Login';
 import { Register } from './components/register/Register';
 import { Create } from './components/create/Create';
 import { Catalog } from './components/catalog/Catalog';
+import { Edit } from './components/edit/Edit';
+import { CarDetails } from './components/details/Details';
 
-import { CarDetails } from './components/details/Details'
 
 
 
@@ -26,6 +30,7 @@ import { CarDetails } from './components/details/Details'
 
 
 function App() {
+
   const [cars, setCars] = useState([]);
   const carsCollRef = collection(db, "cars");
 
@@ -45,10 +50,12 @@ function App() {
       carData
     ])
   };
+
+
   
   return (
     <div className="App">
-      
+     
         <Header/>
       
       
@@ -58,10 +65,12 @@ function App() {
         <Route path='/register' element={<Register/>}> </Route>
         <Route path='/create' element={<Create addCarHandler={addCarHandler}/>}> </Route>
         <Route path='/catalog' element={<Catalog cars={cars}/>}> </Route>
-        <Route path='/catalog/:carId' element={<CarDetails/>} />
+        <Route path='/catalog/:carId' element={<CarDetails cars={cars}/> }/>
+        <Route path='catalog/:cardId/edit' element={<Edit cars={cars} />} />
       </Routes>
      
       <Footer />
+      
     </div>
   );
 }

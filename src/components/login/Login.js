@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth, signIn } from '../../firebase-config';
 
 
+
 export const Login = () => {
 
 	/*const onSubmit = (e) => {
@@ -15,7 +16,7 @@ export const Login = () => {
 		console.log(email);
 		console.log(password);
 	}*/
-
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, seterror] = useState("");
@@ -24,9 +25,10 @@ export const Login = () => {
 	setEmail("");
 	setPassword("");
 	const res = await signIn(email, password);
+	navigate('/catalog');
 	if (res.error) seterror(res.error);
 	};
-
+	
     return (
         <section className="loginPage">
             <div className="login_container">

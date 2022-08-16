@@ -1,0 +1,10 @@
+.details-links {
+    display: inline-block;
+    padding: 24px;
+
+}
+.details-link {
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 12px;
+}

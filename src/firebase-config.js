@@ -35,6 +35,20 @@ const signUp = async (email, password) => {
   }
 };
 
+const register = async(data) => {
+  let usersCollRef = collection(db, "users");
+  addDoc(usersCollRef, {
+		firstName: data.firstName,
+		lastName: data.lastName,
+		email: data.email,
+		password: data.password,
+	}).then(() => {
+		alert("Success");
+	}).catch((err) => {
+		alert(err.message)
+	})
+}
+
 const signIn = async (email, password) => {
   try {
     const userCredentials = await signInWithEmailAndPassword(auth, email, password);
@@ -62,5 +76,6 @@ export {
   db,
  signIn,
  logout,
- signUp
+ signUp, 
+ register
 };

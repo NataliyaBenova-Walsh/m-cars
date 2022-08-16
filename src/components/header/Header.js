@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 
+
+
 export const Header = () => {
+	
     return (
               
 <div id="wrapper">
@@ -13,6 +16,7 @@ export const Header = () => {
 				<ul>
 				<	li><Link to="/catalog">Available cars</Link></li>
 					<div className='user'>
+						<li>Welcome email</li>
 						<li><Link to="/create">Create Offer</Link></li>
 						<li><Link to="/logout">Logout</Link></li>
 					</div>

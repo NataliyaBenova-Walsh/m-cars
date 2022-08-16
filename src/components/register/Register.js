@@ -1,14 +1,14 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
-import { db} from '../../firebase-config'
-import { addDoc, collection } from 'firebase/firestore';
+import { register} from '../../firebase-config'
+import {  } from 'firebase/firestore';
 
 
 
 
 export const Register = () => {
-	let usersCollRef = collection(db, "users");
+	const navigate = useNavigate();
 	const [data, setData] = useState({});
 	const handleInput = (e) => {
 		let newInput = {[e.target.name] : e.target.value};
@@ -18,29 +18,17 @@ export const Register = () => {
 
 	const submit = async (e) =>  {
 		e.preventDefault();
-		/*if(!firstName) alert("Please enter first name");
-		if(!lastName) alert("Please enter last name");
-	if (password != confirmPassword) {
+		if (!data.firstName) {
+			alert("Please enter first name");
+		} else if(!data.lastName) {
+			alert("Please enter last name");
+		} else if (data.password != data.confirmPassword) {
 		alert ("Passwords do not match");
-	} else {*/
-
-	
-	addDoc(usersCollRef, {
-		firstName: data.firstName,
-		lastName: data.lastName,
-		email: data.email,
-		password: data.password,
-	}).then(() => {
-		alert("Success");
-	}).catch((err) => {
-		alert(err.message)
-	})
-	
-	
-	};
-
-	
-
+		} else {
+			register(data);
+			navigate('/catalog');
+		}
+	}	
 	return (
         <section className="registerPage">
             <div className="register_container">
@@ -96,6 +84,7 @@ export const Register = () => {
 					 name='confirmPassword'
 					  id='confirmPassword' 
 					
+					  onChange={(e)=>(handleInput(e))}
 					 
 					  />
 				</div>
@@ -119,9 +108,4 @@ export const Register = () => {
 </div>
         </section>
     );
-	 
 }
-
-
-
-    
