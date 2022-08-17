@@ -1,5 +1,7 @@
 import { createCarOffer } from "../services/CarServices";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../services/AuthContext";
+import { useNavigate } from "react-router-dom";
 
  export const Create = ({addCarHandler}) => {
 	const [carData, setCarData] = useState({});
@@ -7,19 +9,24 @@ import { useState } from "react";
 		let newInput = {[e.target.name] : e.target.value};
 		setCarData({...carData, ...newInput});
 	}
+
+	const { user } = useContext(AuthContext);
+	console.log(user);
+	const navigate = useNavigate();
 	
 	const createOffer = async (e) => {
 		e.preventDefault();
-		//const carData = Object.fromEntries(new FormData(e.target));
+		
 		console.log(carData);
 		try {
-			await createCarOffer(carData);
+			await createCarOffer(carData, user.uid);
 			
 		} catch(err) {
 			alert(err)
 		}
 		
 		addCarHandler(carData);
+		navigate ('/catalog');
 	}
     return (
         <section className="createPage">

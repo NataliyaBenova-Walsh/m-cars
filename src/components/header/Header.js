@@ -22,10 +22,11 @@ export const Header = () => {
 			</div>
 			<nav className="menu">
 				<ul>
-				<	li><Link to="/catalog">Available cars</Link></li>
+					{user && <li className='welcomeUser'>Welcome {user.email}</li>}
+					<li><Link to="/catalog">Available cars</Link></li>
 					{ user ? 
 						<div className='user'>
-						<li>Welcome {user.email}</li>
+						
 						<li><Link to="/create">Create Offer</Link></li>
 						<li><button className='logoutBtn' onClick={onLogout}>Logout</button></li>
 					</div> 

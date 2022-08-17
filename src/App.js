@@ -74,7 +74,7 @@ function App() {
         <Route path='/create' element={<Create addCarHandler={addCarHandler}/>}> </Route>
         <Route path='/catalog' element={<Catalog cars={cars}/>}> </Route>
         <Route path='/catalog/:carId' element={<CarDetails cars={cars}/> }/>
-        <Route path='edit/:carId' element={<Edit cars={cars} />} />
+        <Route path='edit/:carId' element={<Edit addCarHandler={addCarHandler} cars={cars} />} />
       </Routes>
      
       <Footer />

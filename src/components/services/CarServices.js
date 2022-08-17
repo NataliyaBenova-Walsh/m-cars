@@ -1,6 +1,11 @@
 import { db } from '../../firebase-config';
 import {collection, addDoc, Timestamp} from 'firebase/firestore';
 import { getDoc, updateDoc, deleteDoc, getDocs, doc } from 'firebase/firestore';
+import { useContext } from 'react';
+import AuthContext from '../services/AuthContext';
+
+
+
 
 export const getCarById = async (id) => {
 
@@ -24,7 +29,13 @@ export const editCar = async(car, newCar, carId) => {
     
     const carDocRef = doc(db, 'cars', carId);
     try {
-        const result = await updateDoc(carDocRef, {...newCar, created: Timestamp.now()});
+        const result = await updateDoc(carDocRef, {
+        carModel: newCar.carModel,
+        desc: newCar.desc,
+        city: newCar.city,
+        price: newCar.price,
+        imgUrl: newCar.imgUrl,
+         created: Timestamp.now()});
         console.log(result);
 
     } catch (err) {
@@ -39,12 +50,34 @@ export const deleteCar = async (car) => {
     console.log(`Deleted: ${result}`);
 }
 
-export const createCarOffer = async ({car}) => {
-    try {
-        await addDoc(collection(db, 'cars'), {...car, created: Timestamp.now()});
-    } catch (err) {
-        alert(err);
-    }
-    onclose();
+
+export const createCarOffer = async (newCar, ownerId) => {
+    const carsRef = collection(db, 'cars');
+    
+    const carData = {
+        carModel: newCar.carModel,
+        desc: newCar.desc,
+        city: newCar.city,
+        price: newCar.price,
+        imgUrl: newCar.imgUrl,
+        created: Timestamp.now(),
+        ownerId: ownerId
+    };
+        
+    addDoc(carsRef, carData)
+        .then(docRef => {
+            console.log(carsRef.id);
+            console.log(`New car was added successfully`)
+        })
+        .catch (err => {
+            alert(err);
+            console.log(err);
+        }
+            
+        )
+            
+        
+        
+    
 }
 

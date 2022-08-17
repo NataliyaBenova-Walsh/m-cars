@@ -1,3 +1,22 @@
+.details-container {
+    padding: 24PX;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.details-car-container {
+    padding: 24px;
+    width: 40%;
+    border-radius: 24px;
+    color: #0a445b;
+	box-shadow: 0px 2px 2px #107197;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .details-links {
     display: inline-block;
     padding: 24px;
@@ -7,4 +26,10 @@
     text-decoration: none;
     cursor: pointer;
     margin-left: 12px;
+	color: #107197;
+    
+}
+
+.owner-container {
+    justify-content: left;
 }

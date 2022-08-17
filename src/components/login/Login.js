@@ -7,16 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const Login = () => {
 		
-	/*const onSubmit = (e) => {
-		e.preventDefault();
-
-		const {
-			email,
-			password
-		} = Object.fromEntries(new FormData(e.target));
-		console.log(email);
-		console.log(password);
-	}*/
+	
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
