@@ -9,7 +9,7 @@ import './components/details/Details.css';
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { db, auth } from './firebase-config';
-import {collection, getDocs} from 'firebase/firestore';
+import {collection, getDocs,} from 'firebase/firestore';
 
 import { AuthProvider } from './components/services/AuthContext';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -45,7 +45,7 @@ function App() {
   useEffect(() => {
     const getCars = async () => {
       const data = await getDocs(carsCollRef);
-   
+      
       setCars(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
       
     }

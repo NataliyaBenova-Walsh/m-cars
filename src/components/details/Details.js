@@ -1,15 +1,16 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { getCarById } from '../services/CarServices';
-
+import { auth } from '../../firebase-config';
 
 
 
 export const CarDetails = ({ car}) => {
-    
+    const [ user, error] = useAuthState(auth);
     const { carId } = useParams();
+    let isOwner;
     console.log(carId);
     const [currentCar, setCurrentCar] = useState({});
 
@@ -17,7 +18,8 @@ export const CarDetails = ({ car}) => {
         const car = async () => {
             try {
                 const data = await getCarById(carId);
-                console.log(data)
+                console.log(data);
+            
                 setCurrentCar(data);
              } catch(err) {
                 alert(err);
@@ -27,8 +29,14 @@ export const CarDetails = ({ car}) => {
         
     }, [carId]);
 
-   console.log(currentCar);
+    console.log(`User: ${user.uid}`);
+    console.log(`Owner: ${currentCar.ownerId}`);
+
+    if(user.uid==currentCar.ownerId) {
+         isOwner = true;
+    }
     
+  
         
     
 
@@ -41,10 +49,14 @@ export const CarDetails = ({ car}) => {
             <h4 className='car-location'>Location: {currentCar.city}</h4>
             <p className='cra-desc'>Description: {currentCar.desc}</p>
 			
-			<div className="details-links">
+            {isOwner 
+            ? <div className="details-links">
                 <Link className='details-link' to={`/edit/${carId}`}>Edit</Link>
                 <Link className='details-link' to={`/delete/${carId}`}>Delete</Link>
             </div>
+            : <p>You cannot edit or delete</p>
+            }
+			
 		</div>
 
         <div className='details-car-container owner-container'>
@@ -55,6 +67,7 @@ export const CarDetails = ({ car}) => {
 				<div className='owner-card'>
                     <h3 className='owner-name'>Name:</h3>
                     <h3 className='owner-email'>Email: </h3>
+                    <a href='mailto: niqbenova@yahoo.com'>Email me</a>
                 </div>
                   
                     	
