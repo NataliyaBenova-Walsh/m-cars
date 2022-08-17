@@ -36,8 +36,9 @@
 }
 
 
-.detailsLink {
-    background: #fff;
+
+.details-btn {
+	background: #fff;
 	font-size: 14px;
 	margin-top: 30px;
 	padding: 16px 20px;
@@ -52,12 +53,6 @@
 	box-shadow: 0px 2px 2px #107197;
 	cursor: pointer;
 	transition: .2s;
-    
-}
-.detailsLink a {
-    text-decoration: none;
-    cursor: pointer;
-    color: #107197;
 }
 
 
