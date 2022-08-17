@@ -1,7 +1,8 @@
 import { editCar, getCarById } from "../services/CarServices";
 import { useEffect, useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { updateDoc } from "firebase/firestore";
+import { doc, updateDoc, Timestamp } from "firebase/firestore";
+import { db } from '../../firebase-config';
 
  export const Edit = () => {
    
@@ -24,25 +25,36 @@ import { updateDoc } from "firebase/firestore";
         }
         car()  
         
-    }, [carId]);
+    }, []);
 
    console.log(currentCar);
+   
 	
 	const onSubmit = async (e) => {
         e.preventDefault();
 
-        const carData = Object.fromEntries(new FormData(e.target));
-        console.log(carData);
-        const updateCar = async (currentCar, carData) => {
-            try 
-            { 
-                await updateDoc(currentCar, carData);
-            } catch(err) {
-                alert(err);
-            }
+        const newCar = Object.fromEntries(new FormData(e.target));
+        console.log(newCar);
+		
+    		try {
+				const carRef = doc(db, "cars", carId);
+				const result = await updateDoc(carRef, {
+					carModel: newCar.carModel,
+					price: newCar.price,
+					city: newCar.city,
+					imgUrl: newCar.imgUrl,
+					desc: newCar.desc,
+					 created: Timestamp.now()
+				});
+					console.log(result);
+				alert("Success");
+
+    		} catch (err) {
+        		alert(err);
+    		}
             
             navigate('/catalog');
-        }
+        
 	}
     return (
         <section className="createPage">
@@ -89,7 +101,7 @@ import { updateDoc } from "firebase/firestore";
 								id='desc' 
 								defaultValue={currentCar.desc}/>
 			    			</div>
-				<button className="button create__submit">Create offer</button>				
+				<button className="button create__submit">Update offer</button>				
 			</form>
         
 		</div>

@@ -1,9 +1,17 @@
-import { Link } from 'react-router-dom';
 
+import { Link, useNavigate } from 'react-router-dom';
+import { auth, db, logout } from '../../firebase-config';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 export const Header = () => {
-	
+	const [ user, error] = useAuthState(auth);
+	const navigate = useNavigate();
+
+	const onLogout = async () => {
+		await logout();
+		navigate('/');
+	}
     return (
               
 <div id="wrapper">
@@ -15,15 +23,19 @@ export const Header = () => {
 			<nav className="menu">
 				<ul>
 				<	li><Link to="/catalog">Available cars</Link></li>
-					<div className='user'>
-						<li>Welcome email</li>
+					{ user ? 
+						<div className='user'>
+						<li>Welcome {user.email}</li>
 						<li><Link to="/create">Create Offer</Link></li>
-						<li><Link to="/logout">Logout</Link></li>
-					</div>
-					<div className='guest'>
+						<li><button className='logoutBtn' onClick={onLogout}>Logout</button></li>
+					</div> 
+						:
+						<div className='guest'>
 						<li><Link to="/login">Login</Link></li>
                     	<li><Link to="/Register">Register</Link></li>
 					</div>
+					}
+					
 					
 					
 					

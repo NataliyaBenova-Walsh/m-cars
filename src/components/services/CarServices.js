@@ -10,7 +10,7 @@ const carSnap = await getDoc(carRef);
 let carData = carSnap.data();
 
 if (carSnap.exists()) {
-    carData = {...carData, carId: id};
+
   console.log("Car data:", carData);
   return carData;
 }
@@ -20,11 +20,12 @@ else {
 }
 }
 
-export const editCar = async(car, newCar) => {
-    const carDocRef = doc(db, 'cars', car.id);
+export const editCar = async(car, newCar, carId) => {
+    
+    const carDocRef = doc(db, 'cars', carId);
     try {
-        await updateDoc(carDocRef, {newCar});
-        
+        const result = await updateDoc(carDocRef, {...newCar, created: Timestamp.now()});
+        console.log(result);
 
     } catch (err) {
         alert(err);
@@ -34,7 +35,8 @@ export const editCar = async(car, newCar) => {
 
 export const deleteCar = async (car) => {
     const carRef = doc(db, "cars", car.id);
-    await deleteDoc(carRef);
+    const result = await deleteDoc(carRef);
+    console.log(`Deleted: ${result}`);
 }
 
 export const createCarOffer = async ({car}) => {

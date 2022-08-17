@@ -5,11 +5,13 @@ import './components/register/Register.css';
 import './components/create/Create.css';
 import './components/catalog/Catalog.css';
 import './components/details/Details.css';
+
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { db, auth } from './firebase-config';
 import {collection, getDocs} from 'firebase/firestore';
 
+import { AuthProvider } from './components/services/AuthContext';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import { Header} from './components/header/Header';
@@ -30,6 +32,12 @@ import { CarDetails } from './components/details/Details';
 
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+  }, []);
 
   const [cars, setCars] = useState([]);
   const carsCollRef = collection(db, "cars");

@@ -2,10 +2,11 @@ import React, { useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, signIn } from '../../firebase-config';
 
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 export const Login = () => {
-
+		
 	/*const onSubmit = (e) => {
 		e.preventDefault();
 
@@ -19,15 +20,21 @@ export const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [error, seterror] = useState("");
+	const [user, error] = useAuthState(auth);
+	
+	useEffect(() => {
+		console.log(user);
+		if(user) navigate('/catalog');
+	}, [user]);
+
+	
 	const handleSubmit = async (e) => {
 	e.preventDefault();
-	setEmail("");
-	setPassword("");
-	const res = await signIn(email, password);
+	
+	await signIn(auth, email, password);
+	console.log(user);
 	navigate('/catalog');
-	if (res.error) seterror(res.error);
-	};
+	}
 	
     return (
         <section className="loginPage">

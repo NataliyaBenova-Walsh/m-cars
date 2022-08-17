@@ -18,55 +18,60 @@ const app = initializeApp(firebaseConfig);
  const db = getFirestore(app);
  const auth = getAuth(app);
 
-const signUp = async (email, password) => {
+const signUp = async (firstName, lastName, email, password) => {
   try {
-    const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredentials.user;
+    const res = await createUserWithEmailAndPassword(auth, email, password);
+    const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       email: user.email,
       firstName: user.firstName,
-      lastName: user.lastName
+      lastName: user.lastName,
+
     });
-    return true;
+    
   } catch (err) {
     console.log(err);
-    
+    alert(err.message);
   }
 };
 
 const register = async(data) => {
+  try {
+  const res = await createUserWithEmailAndPassword(auth, data.email, data.password);
+    const user = res.user;
   let usersCollRef = collection(db, "users");
   addDoc(usersCollRef, {
+    uid: user.uid,
+    email: user.email,
 		firstName: data.firstName,
 		lastName: data.lastName,
-		email: data.email,
-		password: data.password,
-	}).then(() => {
+		
+	});
+    
 		alert("Success");
-	}).catch((err) => {
+	} catch(err) {
 		alert(err.message)
-	})
+	}
 }
 
-const signIn = async (email, password) => {
+const signIn = async (auth, email, password) => {
   try {
-    const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredentials.user;
+    await signInWithEmailAndPassword(auth, email, password);
     
-    return true;
+    
   } catch (err) {
     console.log(err);
-   
+    alert(err.message);
   }
 };
 
 const logout = async () => {
   try {
     await signOut(auth);
-    return true;
+  
   } catch (err) {
-    return false;
+    alert(err);
   }
  
 };

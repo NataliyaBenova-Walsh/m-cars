@@ -1,14 +1,24 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import React, {useEffect, useState} from 'react';
-import { register} from '../../firebase-config'
-import {  } from 'firebase/firestore';
+import { register, auth} from '../../firebase-config'
+
+
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 
 
 export const Register = () => {
 	const navigate = useNavigate();
+	const [user, error] = useAuthState(auth);
+	
+
+	useEffect(() => {
+		console.log(user);
+		if(user) { navigate('/catalog') };
+	}, [user]);
+
 	const [data, setData] = useState({});
 	const handleInput = (e) => {
 		let newInput = {[e.target.name] : e.target.value};
