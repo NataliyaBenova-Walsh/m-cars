@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { doc, updateDoc, Timestamp } from "firebase/firestore";
 import { db } from '../../firebase-config';
 
- export const Edit = () => {
+ export const Edit = ({addCarHandler}) => {
    
     const navigate = useNavigate();
     const {carId} = useParams();
@@ -35,24 +35,26 @@ import { db } from '../../firebase-config';
 
         const newCar = Object.fromEntries(new FormData(e.target));
         console.log(newCar);
-		
+		const addData = {
+			carModel: newCar.carModel,
+			price: newCar.price,
+			city: newCar.city,
+			imgUrl: newCar.imgUrl,
+			desc: newCar.desc,
+			 created: Timestamp.now()
+		};
     		try {
 				const carRef = doc(db, "cars", carId);
-				const result = await updateDoc(carRef, {
-					carModel: newCar.carModel,
-					price: newCar.price,
-					city: newCar.city,
-					imgUrl: newCar.imgUrl,
-					desc: newCar.desc,
-					 created: Timestamp.now()
-				});
+				
+				const result = await updateDoc(carRef, addData );
 					console.log(result);
-				alert("Success");
+					
+					alert("Success");
 
     		} catch (err) {
         		alert(err);
     		}
-            
+            addCarHandler(addData);
             navigate('/catalog');
         
 	}

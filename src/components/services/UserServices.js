@@ -22,7 +22,7 @@ export const getUserById = async (id) => {
 export const getUserByUid = async (uid) => {
 
   const usersRef = collection(db, "users");
-  const q = query(usersRef, where("uid", "==", owner));
+  const q = query(usersRef, where("uid", "==", uid));
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc)=> {

@@ -35,7 +35,7 @@ export const editCar = async(car, newCar, carId) => {
         city: newCar.city,
         price: newCar.price,
         imgUrl: newCar.imgUrl,
-        ownerId: ownerId,
+        
          created: Timestamp.now()});
         console.log(result);
 
@@ -45,10 +45,15 @@ export const editCar = async(car, newCar, carId) => {
     
 }
 
-export const deleteCar = async (car) => {
-    const carRef = doc(db, "cars", car.id);
-    const result = await deleteDoc(carRef);
+export const delCar =async  (carId) => {
+    const carRef = doc(db, "cars", carId);
+    try {
+        const result = await deleteDoc(carRef);
     console.log(`Deleted: ${result}`);
+    } catch(err) {
+        console.log(err);
+    }
+    
 }
 
 
@@ -73,12 +78,7 @@ export const createCarOffer = async (newCar, ownerId) => {
         .catch (err => {
             alert(err);
             console.log(err);
-        }
-            
+        }   
         )
-            
-        
-        
-    
 }
 

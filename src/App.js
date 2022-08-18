@@ -73,7 +73,7 @@ function App() {
         <Route path='/register' element={<Register/>}> </Route>
         <Route path='/create' element={<Create addCarHandler={addCarHandler}/>}> </Route>
         <Route path='/catalog' element={<Catalog cars={cars}/>}> </Route>
-        <Route path='/catalog/:carId' element={<CarDetails cars={cars}/> }/>
+        <Route path='/catalog/:carId' element={<CarDetails addCarHandler={addCarHandler} cars={cars}/> }/>
         <Route path='edit/:carId' element={<Edit addCarHandler={addCarHandler} cars={cars} />} />
       </Routes>
      

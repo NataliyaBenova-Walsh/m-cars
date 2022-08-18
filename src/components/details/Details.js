@@ -1,18 +1,21 @@
 
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getCarById } from '../services/CarServices';
+import { delCar, getCarById } from '../services/CarServices';
 import { auth, db } from '../../firebase-config';
 import { getUserById, getUserByUid } from '../services/UserServices';
 import { getDoc, doc, collection, query, where, getDocs } from 'firebase/firestore';
 
 
 
-export const CarDetails = ({ car}) => {
+export const CarDetails = ({ car, addCarHandler}) => {
+
+    const navigate = useNavigate();
     const [ user, error] = useAuthState(auth);
     const { carId } = useParams();
     let isOwner;
+    let ownerEmail = '';
     console.log(carId);
     const [currentCar, setCurrentCar] = useState({});
 
@@ -20,7 +23,7 @@ export const CarDetails = ({ car}) => {
         const car = async () => {
             try {
                 const data = await getCarById(carId);
-                console.log(data);
+                
             
                 setCurrentCar(data);
              } catch(err) {
@@ -32,19 +35,44 @@ export const CarDetails = ({ car}) => {
     }, [carId]);
 
    
-    let owner = {};
+    const [currentOwner, setCurrentOwner] = useState({});
+    useEffect(() => {
+        const getOwner = async() => {
+            const usersRef = collection(db, "users");
+        
+            const q = query(usersRef, where("uid", "==", currentCar.ownerId));
+            try {     
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc)=> {
+                    const owner = doc.data();
+                    console.log(owner.email);
+                    ownerEmail = owner.email;
+                    console.log(doc.id, "-", doc.data());
+                    setCurrentOwner(owner);
+                })
+          
+                
+                } catch(err) {
+                    alert(err)
+                }
+                
+        }
+        getOwner();
+
+    }, []);
+
     console.log(`User: ${user.uid}`);
     console.log(`Owner: ${currentCar.ownerId}`);
-    
+   
 
     const getOwner = async (e) => {
             e.preventDefault();
-            const usersRef = collection(db, "users");
+           /* const usersRef = collection(db, "users");
             const q = query(usersRef, where("uid", "==", currentCar.ownerId));
             try {     const querySnapshot = await getDocs(q);
                 querySnapshot.forEach((doc)=> {
-                     owner = doc.data();
-                    console.log(owner);
+                    const  owner = doc.data();
+                    console.log(owner.email);
                     console.log(doc.id, "-", doc.data());
                     return owner;
                 })
@@ -56,22 +84,24 @@ export const CarDetails = ({ car}) => {
            
         
     
-        
+        */
     }
 
     if(user.uid==currentCar.ownerId) {
          isOwner = true;
     }
     
-   
-   /* const getOwner = async(e) => {
-        e.preveventDefault();
-        
-        
-    };*/
-    
-    
-        
+   const onDelete =async (e) => {
+    e.preventDefault();
+    try {
+        delCar(carId);
+        alert("success");
+    } catch(err) {
+        alert(err);
+    }
+    addCarHandler();
+    navigate('/catalog');
+   }
     
 
     return (
@@ -88,6 +118,7 @@ export const CarDetails = ({ car}) => {
                 ? <div className="details-links">
                     <Link className='details-link' to={`/edit/${carId}`}>Edit</Link>
                     <Link className='details-link' to={`/delete/${carId}`}>Delete</Link>
+                    <button onClick={onDelete}>Delete</button>
                 </div>
 
                 : <div className='details-car-container owner-container'>
@@ -96,9 +127,9 @@ export const CarDetails = ({ car}) => {
             
                     <div className="contacts-owner">
 				        <div className='owner-card'>
-                            <h3 className='owner-name'>Name: </h3>
-                            <h3 className='owner-email'>Email: </h3>
-                            <a href={`mailto:${owner.email}`}>Email me</a>
+                            <h3 className='owner-name'>Name: {currentOwner.firstName} </h3>
+                            <h3 className='owner-email'>Email: {ownerEmail}</h3>
+                            <a href={`mailto:${currentOwner.email}`}>Email me</a>
                             <button onClick={getOwner}>Get owner</button>
                         </div>
                     </div>
