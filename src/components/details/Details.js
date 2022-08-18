@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getCarById } from '../services/CarServices';
-import { auth } from '../../firebase-config';
+import { auth, db } from '../../firebase-config';
 import { getUserById, getUserByUid } from '../services/UserServices';
+import { getDoc, doc, collection, query, where, getDocs } from 'firebase/firestore';
 
 
 
@@ -30,27 +31,45 @@ export const CarDetails = ({ car}) => {
         
     }, [carId]);
 
+   
+    let owner = {};
     console.log(`User: ${user.uid}`);
     console.log(`Owner: ${currentCar.ownerId}`);
+    
+
+    const getOwner = async (e) => {
+            e.preventDefault();
+            const usersRef = collection(db, "users");
+            const q = query(usersRef, where("uid", "==", currentCar.ownerId));
+            try {     const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc)=> {
+                     owner = doc.data();
+                    console.log(owner);
+                    console.log(doc.id, "-", doc.data());
+                    return owner;
+                })
+          
+                
+                } catch(err) {
+                    alert(err)
+                }
+           
+        
+    
+        
+    }
 
     if(user.uid==currentCar.ownerId) {
          isOwner = true;
     }
     
-    const [carOwner, setCarOwner] = useState({});
-
-    useEffect(() => {
-        const owner = async () => {
+   
+   /* const getOwner = async(e) => {
+        e.preveventDefault();
         
-                const data = await getUserByUid(currentCar.ownerId);
-                console.log(data);
-            
-                setCarOwner(data);
-             
-        }
-        owner();  
         
-    }, []);
+    };*/
+    
     
         
     
@@ -79,7 +98,8 @@ export const CarDetails = ({ car}) => {
 				        <div className='owner-card'>
                             <h3 className='owner-name'>Name: </h3>
                             <h3 className='owner-email'>Email: </h3>
-                            <a href='mailto: niqbenova@yahoo.com'>Email me</a>
+                            <a href={`mailto:${owner.email}`}>Email me</a>
+                            <button onClick={getOwner}>Get owner</button>
                         </div>
                     </div>
                     </div>

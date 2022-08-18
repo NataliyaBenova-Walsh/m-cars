@@ -19,8 +19,8 @@ export const getUserById = async (id) => {
     }
     }
 
-export const getUserByUid = async () => {
-    const userRef = doc(db, "users", "R3bBHMoUqGYN0g79TA3aoVWYMIn1");
+export const getUserByUid = async (uid) => {
+    const userRef = doc(db, "users", uid);
     
     try {
         const userSnap = await getDoc(userRef);
