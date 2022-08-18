@@ -60,3 +60,9 @@
 #car-container {
     width: 30%;
 }
+
+/* Responsive */ 
+
+@media  screen and ( max-width: 767px) {
+	
+}

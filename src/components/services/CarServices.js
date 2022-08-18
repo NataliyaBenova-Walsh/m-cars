@@ -35,6 +35,7 @@ export const editCar = async(car, newCar, carId) => {
         city: newCar.city,
         price: newCar.price,
         imgUrl: newCar.imgUrl,
+        ownerId: ownerId,
          created: Timestamp.now()});
         console.log(result);
 

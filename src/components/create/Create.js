@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 	}
 
 	const { user } = useContext(AuthContext);
-	console.log(user);
+	console.log(user.uid);
 	const navigate = useNavigate();
 	
 	const createOffer = async (e) => {

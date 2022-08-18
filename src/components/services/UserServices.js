@@ -20,16 +20,19 @@ export const getUserById = async (id) => {
     }
 
 export const getUserByUid = async (uid) => {
-    const userRef = doc(db, "users", uid);
-    
+
+  const usersRef = collection(db, "users");
+  const q = query(usersRef, where("uid", "==", owner));
     try {
-        const userSnap = await getDoc(userRef);
-        console.log(userSnap);
-        console.log('User data:', userSnap.data());
-    
-    } catch(err) {
-        console.log(err);
-    }
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc)=> {
+          console.log(doc.id, "-", doc.data());
+      });
+
+      
+      } catch(err) {
+          alert(err)
+      }
     
 
     
