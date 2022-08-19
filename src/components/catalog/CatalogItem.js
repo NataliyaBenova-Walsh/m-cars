@@ -20,7 +20,7 @@ export const CatalogItem = ({ car }) => {
                 <h2>Model: <span className='bold'>{car.carModel}</span></h2>
 			    <h3>Price from: <span className='bold'>{car.price} </span>&euro; per day </h3>
                 <h4>Location: <span className='bold'>{car.city}</span></h4>
-                <div className="detailsLink"><button onClick={onDetails} className="details-btn">Details</button></div>
+                <div className="detailsLink"><button onClick={onDetails} className="details-btn button">Details</button></div>
                 
             </div>
 			

@@ -2,6 +2,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db, logout } from '../../firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 
 export const Header = () => {
@@ -21,6 +23,8 @@ export const Header = () => {
 				<h1><Link to="/">M CARS</Link></h1>
 			</div>
 			<nav className="menu">
+					<label for="hamburger">&#9776;</label>
+  					<input type="checkbox" id="hamburger"/>
 				<ul>
 					{user && <li className='welcomeUser'>Welcome {user.email}</li>}
 					<li><Link to="/catalog">Available cars</Link></li>
@@ -36,13 +40,13 @@ export const Header = () => {
                     	<li><Link to="/Register">Register</Link></li>
 					</div>
 					}
-					
-					
-					
-					
                     
 				</ul>
 			</nav>
+			
+  					
+  	
+
 		</div>
 	</section>
 	

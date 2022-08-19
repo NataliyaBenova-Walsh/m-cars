@@ -2,16 +2,14 @@
 #featured-content {
     display: flex;
 	flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-	overflow: hidden;
-	width: 1000px;
+    gap: 36px;
+	max-width: 1000px;
 	margin: 0px auto;
 	padding: 30px;
 }
 .car-container {
     box-shadow: 0px 2px 2px #107197;
-    border-radius: 26px;
+    border-radius: 25px;
 	border: 1px solid #D4D3E8;
 	margin-bottom: 24px;
 }
@@ -37,23 +35,7 @@
 
 
 
-.details-btn {
-	background: #fff;
-	font-size: 14px;
-	margin-top: 30px;
-	padding: 16px 20px;
-	border-radius: 26px;
-	border: 1px solid #D4D3E8;
-	text-transform: uppercase;
-	font-weight: 700;
-	display: flex;
-	align-items: center;
-	width: 50%;
-	color: #0a445b;
-	box-shadow: 0px 2px 2px #107197;
-	cursor: pointer;
-	transition: .2s;
-}
+
 
 
 
@@ -64,5 +46,24 @@
 /* Responsive */ 
 
 @media  screen and ( max-width: 767px) {
-	
+	#logo h1 {
+		
+	}
+	#featured-content {
+		max-width: 100%;
+		gap: 12px;
+		padding: 0;
+	}
+	.car-container {
+		margin: 0 auto;
+	}
+	.create-container {
+		min-height: 50vh;
+	}
+	.links .link {
+		width: auto;
+	}
+	.hero {
+		padding-bottom: 0;
+	}
 }

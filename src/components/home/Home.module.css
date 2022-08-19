@@ -1,6 +1,10 @@
 .heroImg {
-	
+	opacity: 0.25;
 	border-radius: 24px;
+	position: absolute;
+	right: -90px;
+	top: -20px;
+	max-height: 400px;
     
 }
 @media  screen and ( max-width: 767px) {
