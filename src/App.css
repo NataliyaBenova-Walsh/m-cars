@@ -30,14 +30,9 @@ p, ul, ol {
 	line-height: 180%;
 }
 
-#wrapper {
-	margin: 10px auto;
-	width: 95%;
-}
 
-.container {
-	margin: 0px auto;
-}
+
+
 
 /* Header */
 
@@ -45,15 +40,15 @@ p, ul, ol {
 	height: 100px;
 	background: #107197;
 	border-radius: 25px;
+	width: 90%;
+	margin: 0 auto;
 }
 
 #header {
-	width: 100%;
+	margin: 10px auto;
 	height: 100px;
-	margin: 0 auto;
-	padding: 0px 0px;
-	display: flex;
-	justify-content: space-between;
+	padding: 0px;
+	
 }
 
 /* Logo */
@@ -66,14 +61,14 @@ p, ul, ol {
 	color: #FFFFFF;
 }
 
-#logo h1 {
+#logo-title {
 	font-weight: bold;
 	font-size: 3em;
 	padding: 24px;
 	text-shadow: 1px 1px #38495a;
 }
 
-#logo h1 a {
+.logo-link {
 	color: #FFFFFF;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -83,21 +78,25 @@ p, ul, ol {
 /* Menu */
 
 .menu {
-	width: 500px;
+	
 	margin: 0 0 0 auto;
 	padding: 0;
+	
 }
-
-.menu ul {
+.nav-menu {
+	display: flex;
+	justify-content: space-between;
+}
+.nav-ul {
 	margin: 0;
-	padding: 36px 0px 0px 0px;
+	padding: 36px 12px 0 0;
 	list-style: none;
 	line-height: normal;
-	display: flex;
-	justify-content: space-evenly;
+	display: inline-block;
+
 }
 
-.menu li {
+.nav-ul li {
 	display: inline-block;
 	padding: 0px;
 }
@@ -123,7 +122,7 @@ p, ul, ol {
 	cursor: pointer;
 }
 
-.menu a {
+.nav-ul a {
 	cursor: pointer;
 	margin-right: 1px;
 	padding: 10px;
@@ -136,28 +135,36 @@ p, ul, ol {
 	text-shadow: 1px 1px #38495a;
 }
 
-.menu a:hover, #menu  {
+.menu a:hover  {
 	text-decoration: none;
 	color: #FFFFFF;
 }
 
 /* nav mobile*/
 
-.menu label, #hamburger {
-	display: none;
-}
 
-.menu-mobile {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100px;
-	height: 100px;
-}
+
+.hamburger {
+	border: 0;
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	border-radius: 25%;
+	background-color: transparent;
+	cursor: pointer;
+	transition: 0.3s;
+	display: none;
+  }
+  .hamburger:hover {
+	border: 1px solid #fff;
+  }
 .icon-menu {
 	font-size: 24px;
 	font-weight: bold;
 }
+
 .menu-mobile-btn {
 	background-color: transparent;
 	border: none;
@@ -356,20 +363,57 @@ p, ul, ol {
 /*Responsive design */
 
 @media  screen and ( max-width: 767px) {
-	.menu {
-		display: inline-block;
+	.hamburger {
+		display: block;
+		
 	}
-	
-	.menu ul li {
-		flex-wrap: wrap;
+	.hamburger:hover {
+		border: 1px solid white;
+	}
+	.nav-ul {
+		display: none;
+		position: absolute;
+		left: 3px;
+		top: 90px;
+    	flex-direction: column;
+    	width: 97%;
+		margin: 0;
+    	height: 250px;
+		background-color: #107197;
+    	border-end-start-radius: 16px;
+		border-end-end-radius: 16px;
+		z-index: 1;
+		
+	}
+	.user, .guest {
+		display: block;
+	}
+	.nav-ul li {
+		text-align: center;
+		display: block;
+		margin-bottom: 30px;
+	}
+	.nav-ul li:last {
+		margin-top: 0;
+	}
+	.logoutBtn {
+		margin: 0;
+	}
+	.menu.expanded .nav-ul {
+		display: block;
+	}
+	.menu.expanded .icon-x {
+		display: block;
+	}
+	.menu.expanded .icon-bars {
 		display: none;
 	}
-	.menu input:checked ~ .menu ul li {
-		display: flex;
+	.logoutBtn {
+		margin-top: 30px;
 	}
-
-	#wrapper {
-		width: 98%;
+	#header-wrapper {
+		width: 99%;
+		margin: 0 auto;
 	}
 	.hero {
 		padding: 0;
@@ -386,8 +430,8 @@ p, ul, ol {
 		margin: 0;
 		padding: 0;
 	}
-	.imgContainer {
-		width: 98%;
+	.imgContainer, .heroImg {
+		display: none;
 	}
 	.hero-info-desc {
 		margin-top: 0;
@@ -395,9 +439,7 @@ p, ul, ol {
 	.footer-container {
 		width: 98%;
 	}
-	.imgContainer {
-		right: 90px;
-	}
+	
 }
 
 @media  screen and (min-width: 768px) and (max-width: 1023px) {
