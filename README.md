@@ -4,8 +4,8 @@ Simple Spa designed for car sharing called MCars. CSS for styling, responsive de
 Home, Catalog, Login, Register, Create Offer pages.
 Guest users can see Home, Catalog, Login and Register Pages.
 For Details they need to log in or register.
-Users can also create offer, see Details and logout. Only the creator of an offer can edit / delete it. Users that did not create the offer can contact the owner.
-The project is deployed useing Firebase hosting:
+Users can also create offer, see Details and logout. Only the creator of an offer can edit / delete it. Users that did not create the offer can contact the owner, they receive the owner details and can email directly.
+The project is deployed using Firebase hosting:
 
 ## Hosting URL: https://m-cars-56c97.web.app 
 
