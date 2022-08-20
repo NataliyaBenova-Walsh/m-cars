@@ -4,6 +4,7 @@ import AuthContext from "../services/AuthContext";
 import { useNavigate } from "react-router-dom";
 
  export const Create = ({addCarHandler}) => {
+
 	const [carData, setCarData] = useState({});
 	const handleInput = (e) => {
 		let newInput = {[e.target.name] : e.target.value};
@@ -21,12 +22,13 @@ import { useNavigate } from "react-router-dom";
 		try {
 			await createCarOffer(carData, user.uid);
 			
+			addCarHandler(carData);
+			navigate ('/catalog');
 		} catch(err) {
 			alert(err)
 		}
 		
-		addCarHandler(carData);
-		navigate ('/catalog');
+		
 	}
     return (
         <section className="createPage">

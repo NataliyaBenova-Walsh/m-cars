@@ -1,9 +1,10 @@
 import {db} from '../../firebase-config';
 import {collection, query, where, getDoc, doc, getDocs} from 'firebase/firestore';
-import { async } from '@firebase/util';
+
 
 
 export const getUserById = async (id) => {
+  
     const userRef = doc(db, "users", id);
     const userSnap = await getDoc(userRef);
     let userData = userSnap.data();
@@ -25,8 +26,13 @@ export const getUserByUid = async (uid) => {
   const q = query(usersRef, where("uid", "==", uid));
     try {
       const querySnapshot = await getDocs(q);
+      let result;
       querySnapshot.forEach((doc)=> {
+        result = doc.data();
+       
           console.log(doc.id, "-", doc.data());
+          console.log(result);
+          return result;
       });
 
       

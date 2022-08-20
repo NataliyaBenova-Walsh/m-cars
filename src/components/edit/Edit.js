@@ -35,7 +35,7 @@ import { db } from '../../firebase-config';
 
         const newCar = Object.fromEntries(new FormData(e.target));
         console.log(newCar);
-		const addData = {
+		const newData = {
 			carModel: newCar.carModel,
 			price: newCar.price,
 			city: newCar.city,
@@ -44,17 +44,12 @@ import { db } from '../../firebase-config';
 			 created: Timestamp.now()
 		};
     		try {
-				const carRef = doc(db, "cars", carId);
-				
-				const result = await updateDoc(carRef, addData );
-					console.log(result);
+				await editCar(carId, newData);
 					
-					alert("Success");
-
     		} catch (err) {
         		alert(err);
     		}
-            addCarHandler(addData);
+         
             navigate('/catalog');
         
 	}

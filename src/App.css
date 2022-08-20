@@ -173,7 +173,9 @@ p, ul, ol {
  
 .hero {
   position: relative;
-  padding: 24px;
+ width: 90%;
+ margin: 0 auto;
+
 }
 
 .heroContainer {
@@ -238,8 +240,11 @@ p, ul, ol {
 .hero-info-desc {
 	display: flex;
 	justify-content: space-around;
-	
 	flex-wrap: wrap;
+	padding-top: 24px;
+	padding-bottom: 24px;
+	border-top: 2px solid  #107197;
+	border-bottom: 2px solid  #107197;
 }
 
 .page-container {
@@ -249,9 +254,9 @@ p, ul, ol {
 	align-items: center;
 	margin-top: 12px;
 	border-radius: 12px;
-	border: 1px solid #107197;
+	background-color: #d5e1e7 ;
 	color: #0a445b;
-	box-shadow: 0px 2px 2px #107197;
+	
 	padding: 12px;
 }
 
@@ -279,9 +284,7 @@ p, ul, ol {
 .page-last-info {
 	width: 90%;
 	margin: 30px auto 0 auto;
-	border-radius: 12px;
-	border: 1px solid #107197;
-	box-shadow: 0px 2px 2px #107197;
+
 	padding: 12px;
 }
 /* Links to register and catalog*/
@@ -395,6 +398,9 @@ p, ul, ol {
 	}
 	.nav-ul li:last {
 		margin-top: 0;
+	}
+	.menu.expanded a:active .nav-ul {
+		display: none;
 	}
 	.logoutBtn {
 		margin: 0;

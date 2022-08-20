@@ -9,7 +9,7 @@ import './components/details/Details.css';
 import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import { db, auth } from './firebase-config';
-import {collection, getDocs,} from 'firebase/firestore';
+import {collection, getDocs, onSnapshot, doc} from 'firebase/firestore';
 
 import { AuthProvider } from './components/services/AuthContext';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -30,7 +30,6 @@ import { CarDetails } from './components/details/Details';
 
 
 
-
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
@@ -43,9 +42,11 @@ function App() {
   const carsCollRef = collection(db, "cars");
 
   useEffect(() => {
-    const getCars = async () => {
+  
+
+    const getCars = async() => {
       const data = await getDocs(carsCollRef);
-      
+   
       setCars(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
       
     }
@@ -71,9 +72,9 @@ function App() {
         <Route path='/' element={<Home/>}> </Route>
         <Route path='/login' element={<Login/>}> </Route>
         <Route path='/register' element={<Register/>}> </Route>
-        <Route path='/create' element={<Create addCarHandler={addCarHandler}/>}> </Route>
-        <Route path='/catalog' element={<Catalog cars={cars}/>}> </Route>
-        <Route path='/catalog/:carId' element={<CarDetails addCarHandler={addCarHandler} cars={cars}/> }/>
+        <Route path='/create' element={<Create cars={cars} addCarHandler={addCarHandler}/>}> </Route>
+        <Route path='/catalog' element={<Catalog cars={cars} addCarHandler={addCarHandler}/>}> </Route>
+        <Route path='/catalog/:carId' element={<CarDetails addCarHandler={addCarHandler}  cars={cars}/> }/>
         <Route path='edit/:carId' element={<Edit addCarHandler={addCarHandler} cars={cars} />} />
       </Routes>
      

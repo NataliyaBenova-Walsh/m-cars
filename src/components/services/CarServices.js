@@ -25,23 +25,21 @@ else {
 }
 }
 
-export const editCar = async(car, newCar, carId) => {
+export const editCar = async(carId, newData) => {
     
     const carDocRef = doc(db, 'cars', carId);
     try {
-        const result = await updateDoc(carDocRef, {
-        carModel: newCar.carModel,
-        desc: newCar.desc,
-        city: newCar.city,
-        price: newCar.price,
-        imgUrl: newCar.imgUrl,
+        const carRef = doc(db, "cars", carId);
         
-         created: Timestamp.now()});
-        console.log(result);
-
+        const result = await updateDoc(carRef, newData );
+            console.log(result);
+            
+            alert("Success");
+            
     } catch (err) {
         alert(err);
     }
+
     
 }
 
@@ -49,7 +47,7 @@ export const delCar =async  (carId) => {
     const carRef = doc(db, "cars", carId);
     try {
         const result = await deleteDoc(carRef);
-    console.log(`Deleted: ${result}`);
+    console.log(`Deleted:`);
     } catch(err) {
         console.log(err);
     }
@@ -73,7 +71,8 @@ export const createCarOffer = async (newCar, ownerId) => {
     addDoc(carsRef, carData)
         .then(docRef => {
             console.log(carsRef.id);
-            console.log(`New car was added successfully`)
+
+            console.log(`New car was added successfully`);
         })
         .catch (err => {
             alert(err);

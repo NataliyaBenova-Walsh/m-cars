@@ -11,12 +11,16 @@ export const Header = () => {
 	const [ user, error] = useAuthState(auth);
 	const navigate = useNavigate();
 
-	const onLogout = async () => {
+	const onLogout = async (e) => {
+		e.preventDefault();
 		await logout();
+		
 		navigate('/');
 	}
 
+
 	const [isNavExpanded, setIsNavExpanded] = useState(false);
+
     return (
               
 
@@ -44,21 +48,21 @@ export const Header = () => {
 				isNavExpanded ? "menu expanded" : "menu"
 			}>
 				
-			
 					
-					<ul className='nav-ul'>
+					<ul className= 'nav-ul'>
+				
 						{user && <li className='welcomeUser'>Welcome {user.email}</li>}
-						<li><Link to="/catalog">Available cars</Link></li>
+						<li><Link  to="/catalog">Available cars</Link></li>
 						{ user ? 
 						<div className='user'>
 						
-							<li><Link to="/create">Create Offer</Link></li>
+							<li><Link  to="/create">Create Offer</Link></li>
 							<li><button className='logoutBtn' onClick={onLogout}>Logout</button></li>
 						</div> 
 							:
 						<div className='guest'>
 							<li><Link to="/login">Login</Link></li>
-                    		<li><Link to="/Register">Register</Link></li>
+                    		<li><Link  to="/Register">Register</Link></li>
 					</div>
 					}
                     

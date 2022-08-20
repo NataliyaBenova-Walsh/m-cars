@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import AuthContext from '../services/AuthContext';
 
 import styles from './Catalog.module.css';
-export const CatalogItem = ({ car }) => {
+export const CatalogItem = ({ car, addCarHadler }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     const onDetails = async () => {
