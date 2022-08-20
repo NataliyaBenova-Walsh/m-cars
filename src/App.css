@@ -1,7 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
-
+:root {
+	--medium-blue-clr:  #107197;
+	--light-blue-clr:   #d5e1e7;
+	--dark-blue-clr: #0a445b;
+	--gray-clr: #38495a;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -14,13 +19,12 @@ body {
 h1, h2, h3 {
 	margin: 0;
 	padding: 0;
-	
 	color: #222222;
 }
 
 
 span {
-	color: #107197;
+	color: var(--medium-blue-clr);
 	font-weight: bold;
 }
 
@@ -106,8 +110,8 @@ p, ul, ol {
 }
 
 .welcomeUser {
-	color: #FFFFFF;
-	text-shadow: 1px 1px #38495a;
+	color: var(--light-blue-clr);
+	text-shadow: 1px 1px var(--gray-clr);
 	font-size: 16px;
 	font-weight: bold;
 }
@@ -116,7 +120,7 @@ p, ul, ol {
 	color: #FFFFFF;
 	border: none;
 	background-color: transparent;
-	text-shadow: 1px 1px #38495a;
+	text-shadow: 1px 1px var(--gray-clr);
 	font-size: 16px;
 	font-weight: bold;
 	cursor: pointer;
@@ -132,7 +136,7 @@ p, ul, ol {
 	font-weight: bold;
 	color: #FFFFFF;
 	border: none;
-	text-shadow: 1px 1px #38495a;
+	text-shadow: 1px 1px var(--gray-clr);
 }
 
 .menu a:hover  {
@@ -192,7 +196,7 @@ p, ul, ol {
 
 .hero-title span {
   display: block;
-  color: #107197;
+  color: var(--medium-blue-clr);
 }
 
 .hero-subtitle {
@@ -210,7 +214,7 @@ p, ul, ol {
 
 }
 .icon {
-	background-color: #107197;
+	background-color: var(--medium-blue-clr);
 }
 
 /* Page */
@@ -254,8 +258,8 @@ p, ul, ol {
 	align-items: center;
 	margin-top: 12px;
 	border-radius: 12px;
-	background-color: #d5e1e7 ;
-	color: #0a445b;
+	background-color: var(--light-blue-clr);
+	color: var(--dark-blue-clr);
 	
 	padding: 12px;
 }
@@ -263,7 +267,7 @@ p, ul, ol {
 .page-container .icon {
 	height: 40px;
 	width: 40px;
-	background-color: #107197;
+	background-color: var(--medium-blue-clr);
 	opacity: 0.5;
 	padding: 24px;
 	font-size: 24px;
@@ -273,7 +277,7 @@ p, ul, ol {
 .page-container .page-title {
 	font-size: 24px;
 	font-weight: bold;
-	color: #107197;
+	color: var(--medium-blue-clr);
 	padding: 12px 0;
 }
 .page-container .page-desc {
@@ -300,15 +304,13 @@ p, ul, ol {
 	margin: 30px 16px 16px 0;
 	padding: 16px 20px;
 	border-radius: 12px;
-	border: 1px solid #107197;
+	border: 1px solid var(--medium-blue-clr);
 	text-transform: uppercase;
 	font-weight: 700;
 	width: 25%;
-	color: #0a445b;
-	box-shadow: 0px 2px 2px #107197;
+	color: var(--dark-blue-clr);
 	cursor: pointer;
 	transition: .2s;
-	
 	text-align: center;
 	text-decoration: none;
 }
@@ -320,18 +322,19 @@ p, ul, ol {
 	margin-top: 30px;
 	padding: 16px 20px;
 	border-radius: 12px;
-	border: 1px solid #107197;
+	border: 1px solid var(--medium-blue-clr);
 	text-transform: uppercase;
 	font-weight: 700;
 	display: flex;
 	align-items: center;
 	width: auto;
 	color: #0a445b;
-	box-shadow: 0px 2px 2px #107197;
 	cursor: pointer;
 	transition: .2s;
 }
-
+.button:hover, .link:hover {
+	background-color: var(--light-blue-clr);
+}
 
 
 /* Footer */

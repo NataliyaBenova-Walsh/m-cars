@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 		let newInput = {[e.target.name] : e.target.value};
 		setCarData({...carData, ...newInput});
 	}
-
+	
 	const { user } = useContext(AuthContext);
 	console.log(user.uid);
 	const navigate = useNavigate();
@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 	const createOffer = async (e) => {
 		e.preventDefault();
 		
-		console.log(carData);
+		
 		try {
 			await createCarOffer(carData, user.uid);
 			

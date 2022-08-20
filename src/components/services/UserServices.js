@@ -26,9 +26,9 @@ export const getUserByUid = async (uid) => {
   const q = query(usersRef, where("uid", "==", uid));
     try {
       const querySnapshot = await getDocs(q);
-      let result;
+      
       querySnapshot.forEach((doc)=> {
-        result = doc.data();
+        const result = doc.data();
        
           console.log(doc.id, "-", doc.data());
           console.log(result);

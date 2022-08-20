@@ -7,13 +7,10 @@ import { register, auth} from '../../firebase-config'
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 
-
-
 export const Register = () => {
 	const navigate = useNavigate();
 	const [user, error] = useAuthState(auth);
 	
-
 	useEffect(() => {
 		console.log(user);
 		if(user) { navigate('/catalog') };
@@ -33,10 +30,16 @@ export const Register = () => {
 		} else if(!data.lastName) {
 			alert("Please enter last name");
 		} else if (data.password != data.confirmPassword) {
-		alert ("Passwords do not match");
+			alert ("Passwords do not match");
 		} else {
-			register(data);
-			navigate('/catalog');
+			try {
+				await register(data);
+				navigate('/catalog');
+			} catch(err) {
+				alert(err);
+				navigate('/register');
+			}
+			
 		}
 	}	
 	return (
@@ -56,56 +59,51 @@ export const Register = () => {
 									
 									onChange={(e)=>(handleInput(e))}
 									/>
-				</div>
-                <div className="register__field">
-				<label className='register__label' htmlFor="lastName">Last name:</label>
-					<input type="text" 
-					className="register__input"
-					 name='lastName' 
-					 id='lastName'
+							</div>
+                			
+							<div className="register__field">
+								<label className='register__label' htmlFor="lastName">Last name:</label>
+								<input type="text" 
+								className="register__input"
+								 name='lastName' 
+								 id='lastName'
 					
 					  
-					  onChange={(e)=>(handleInput(e))} />
-				</div>
-                <div className="register__field">
-				<label className='register__label' htmlFor="email">Email:</label>
-					<input typeName="email" 
-					class="register__input"
-					 name='email' 
-					 id='email'
-					 onChange={(e)=>(handleInput(e))}/>
-				</div>
+								  onChange={(e)=>(handleInput(e))} />
+							</div>
+
+                			<div className="register__field">
+								<label className='register__label' htmlFor="email">Email:</label>
+								<input typeName="email" 
+									class="register__input"
+									 name='email' 
+									id='email'
+					 				onChange={(e)=>(handleInput(e))}/>
+							</div>
                
 				
-				<div className="register__field">
-				<label className='register__label' htmlFor="password">Password:</label>
-					<input typeName="password" 
-					class="register__input" 
-					name='password' 
-					id='password' 
-				
-					
-					onChange={(e)=>(handleInput(e))}/>
-				</div>
-                <div className="register__field">
-				<label className='register__label' htmlFor="confirmPassword">Confirm password:</label>
-					<input typeName="password"
-					 class="register__input" 
-					 name='confirmPassword'
-					  id='confirmPassword' 
-					
-					  onChange={(e)=>(handleInput(e))}
-					 
-					  />
-				</div>
+							<div className="register__field">
+								<label className='register__label' htmlFor="password">Password:</label>
+								<input typeName="password" 
+									class="register__input" 
+									name='password' 
+									id='password' 
+									onChange={(e)=>(handleInput(e))}/>
+							</div>
+
+                			<div className="register__field">
+								<label className='register__label' htmlFor="confirmPassword">Confirm password:</label>
+								<input typeName="password"
+					 				class="register__input" 
+					 				name='confirmPassword'
+									id='confirmPassword' 
+									onChange={(e)=>(handleInput(e))}/>
+							</div>
 			
-				<button type="submit" className="button register__submit">
-					Register
-				</button>				
-			</form>
+							<button type="submit" className="button register__submit">Register</button>				
+						</form>
         <div className='isUser'>
-            <p>You already have a profile?</p>
-            <p> Click <Link to="/login">here</Link> to login</p>
+            <p>Have a profile? Click <Link to="/login">here</Link> to login</p>
         </div>
 		</div>
 		<div class="screen__background">

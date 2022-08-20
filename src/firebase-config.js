@@ -1,7 +1,8 @@
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, query, getDocs, collection, addDoc } from "@firebase/firestore";
+import { getFirestore, collection, addDoc } from "@firebase/firestore";
 import { signInWithEmailAndPassword, getAuth, createUserWithEmailAndPassword, signOut} from 'firebase/auth';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBh6jBiwWkl-0z8iwzvE2RrdtW4Z68UA_M",
@@ -18,40 +19,27 @@ const app = initializeApp(firebaseConfig);
  const db = getFirestore(app);
  const auth = getAuth(app);
 
-const signUp = async (firstName, lastName, email, password) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
-    await addDoc(collection(db, "users"), {
-      uid: user.uid,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
 
-    });
-    
-  } catch (err) {
-    console.log(err);
-    alert(err.message);
-  }
-};
+
+
 
 const register = async(data) => {
+
   try {
-  const res = await createUserWithEmailAndPassword(auth, data.email, data.password);
-    const user = res.user;
-  let usersCollRef = collection(db, "users");
-  addDoc(usersCollRef, {
-    uid: user.uid,
-    email: user.email,
-		firstName: data.firstName,
-		lastName: data.lastName,
+      const res = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const user = res.user;
+      let usersCollRef = collection(db, "users");
+      addDoc(usersCollRef, {
+        uid: user.uid,
+        email: user.email,
+		    firstName: data.firstName,
+		    lastName: data.lastName,
 		
 	});
     
-		alert("Success");
 	} catch(err) {
-		alert(err.message)
+		alert(err.message);
+    
 	}
 }
 
@@ -81,6 +69,5 @@ export {
   db,
  signIn,
  logout,
- signUp, 
  register
 };

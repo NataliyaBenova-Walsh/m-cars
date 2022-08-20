@@ -1,28 +1,23 @@
 import { db } from '../../firebase-config';
-import {collection, addDoc, Timestamp} from 'firebase/firestore';
-import { getDoc, updateDoc, deleteDoc, getDocs, doc } from 'firebase/firestore';
-import { useContext } from 'react';
-import AuthContext from '../services/AuthContext';
-
-
+import {collection, addDoc, Timestamp, getDoc, updateDoc, deleteDoc, getDocs, doc, query, where } from 'firebase/firestore';
 
 
 export const getCarById = async (id) => {
 
 
-const carRef = doc(db, "cars", id);
-const carSnap = await getDoc(carRef);
-let carData = carSnap.data();
+    const carRef = doc(db, "cars", id);
+    const carSnap = await getDoc(carRef);
+    let carData = carSnap.data();
 
-if (carSnap.exists()) {
+    if (carSnap.exists()) {
 
-  console.log("Car data:", carData);
-  return carData;
-}
-else {
-  // doc.data() will be undefined in this case
-  console.log("No such!");
-}
+      console.log("Car data:", carData);
+      return carData;
+    }
+    else {
+ 
+      console.log("No such!");
+    }
 }
 
 export const editCar = async(carId, newData) => {
@@ -34,7 +29,6 @@ export const editCar = async(carId, newData) => {
         const result = await updateDoc(carRef, newData );
             console.log(result);
             
-            alert("Success");
             
     } catch (err) {
         alert(err);
@@ -67,7 +61,7 @@ export const createCarOffer = async (newCar, ownerId) => {
         created: Timestamp.now(),
         ownerId: ownerId
     };
-        
+    
     addDoc(carsRef, carData)
         .then(docRef => {
             console.log(carsRef.id);
@@ -81,3 +75,22 @@ export const createCarOffer = async (newCar, ownerId) => {
         )
 }
 
+export const searchCars = async (city) => {
+        const result = [];
+        const carsRef = collection(db, "cars");
+        const q = query(carsRef, where("city", "==", city));
+          try {
+            const querySnapshot = await getDocs(q);
+            
+            querySnapshot.forEach((doc)=> {
+              result.push(doc.data());
+             
+                console.log(doc.id, "-", doc.data());
+                
+            });
+          } catch(err) {
+            console.log(err);
+          }
+          console.log(result);
+              
+}

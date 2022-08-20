@@ -2,7 +2,7 @@
 #featured-content {
     display: flex;
 	flex-wrap: wrap;
-	justify-content: space-evenly;
+	
     gap: 36px;
 	max-width: 1000px;
 	margin: 0px auto;

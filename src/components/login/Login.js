@@ -21,11 +21,17 @@ export const Login = () => {
 	
 	const handleSubmit = async (e) => {
 	e.preventDefault();
-	
-	await signIn(auth, email, password);
-	console.log(user);
-	navigate('/catalog');
+	if(!email) {
+		alert("Please enter email!")
+	} else if (!password) {
+		alert("Please enter password!")
+	} else {
+		await signIn(auth, email, password);
+		navigate('/catalog');
+		}
 	}
+	
+	
 	
     return (
         <section className="loginPage">
@@ -41,7 +47,6 @@ export const Login = () => {
 					name='email' 
 					id='email' 
 					
-					value={email}
 					onChange={(e) => setEmail(e.target.value)}/>
 					
 				</div>
@@ -52,7 +57,6 @@ export const Login = () => {
 					name='password' 
 					id='password' 
 					
-					value={password}
 					onChange={(e) => setPassword(e.target.value)}/>
 				</div>
 				<button className="button login__submit"
@@ -61,7 +65,7 @@ export const Login = () => {
 				</button>				
 			</form>
         <div className='notUser'>
-            <p>Don't have a profile yet? Sign up <Link to="/register">here</Link></p>
+            <p>Don't have a profile yet? Sign up <Link className='notUser-link' to="/register">here</Link></p>
         </div>
 		</div>
 		<div class="screen__background">

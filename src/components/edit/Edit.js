@@ -1,10 +1,10 @@
 import { editCar, getCarById } from "../services/CarServices";
 import { useEffect, useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { doc, updateDoc, Timestamp } from "firebase/firestore";
-import { db } from '../../firebase-config';
+import {  Timestamp } from "firebase/firestore";
 
- export const Edit = ({addCarHandler}) => {
+
+ export const Edit = () => {
    
     const navigate = useNavigate();
     const {carId} = useParams();
@@ -45,12 +45,12 @@ import { db } from '../../firebase-config';
 		};
     		try {
 				await editCar(carId, newData);
-					
+				
+            navigate('/catalog');
     		} catch (err) {
         		alert(err);
     		}
-         
-            navigate('/catalog');
+			
         
 	}
     return (

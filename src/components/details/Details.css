@@ -1,3 +1,7 @@
+#details {
+    position: relative;
+}
+
 .details-container {
     padding: 24PX;
     display: flex;
@@ -6,8 +10,9 @@
 }
 
 .details-car-container {
+    box-sizing: border-box;
     padding: 24px;
-    width: 60%;
+    width: 40%;
     border-radius: 24px;
     color: #0a445b;
 	box-shadow: 0px 2px 2px #107197;
@@ -15,6 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .details-links {
@@ -32,6 +38,51 @@
    color: rgb(136, 37, 37);
    border-color: rgb(136, 37, 37);
 }
+
+
 .owner-container {
     justify-content: left;
+   
+}
+.owner-box {
+    padding: 24px;
+}
+.details-owner-container {
+    text-align: center;
+}
+
+
+.owner-email a {
+    text-decoration: none;
+    color: #107197;
+    margin-bottom: 24px;
+}
+.get-owner-btn {
+    margin: 0 auto;
+}
+.icon-details {
+    
+    color: #107197;
+    font-size: 48px;
+    font-weight: bold;
+}
+.btn-back {
+    position: relative;
+    top: 220px;
+    left: 60px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+.icon-owner {
+    padding-right: 4px;
+}
+.owner-p {
+    text-align: center;
+}
+
+@media  screen and (max-width: 767px) {
+    .owner {
+        width: 80%;
+    }
 }

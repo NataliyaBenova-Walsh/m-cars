@@ -3,11 +3,13 @@ import { useContext } from 'react';
 import AuthContext from '../services/AuthContext';
 
 import styles from './Catalog.module.css';
-export const CatalogItem = ({ car, addCarHadler }) => {
+export const CatalogItem = ({ car }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+    
     const onDetails = async () => {
         if(!user) {
+            alert("Please login in to see the details")
             return navigate('/login');
         }
         navigate(`/catalog/${car.id}`);

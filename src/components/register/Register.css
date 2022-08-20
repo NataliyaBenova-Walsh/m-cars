@@ -12,6 +12,8 @@
 	min-height: 100vh;
 	box-sizing: border-box;
 	font-family: Raleway, sans-serif;
+	padding-top: 24px;
+	font-family: Raleway, sans-serif;
 }
 
 .screen {		
@@ -103,6 +105,7 @@
 	font-weight: 700;
 	width: 75%;
 	transition: .2s;
+	display: block;
 }
 .register__label {
 	padding-left: 8px;
@@ -127,11 +130,10 @@
 .isUser {
 	background: none;
 	padding: 10px;
-	padding-left: 18px;
 	font-weight: 700;
 	width: 75%;
 	transition: .2s;
-    margin: 12px auto auto auto;
+    margin: auto;
     color: #fff;
     text-shadow: black;
     text-decoration: none;
