@@ -1,6 +1,6 @@
 School project with React. Firebase for hosting and database.
 
-Simple Spa designed for car sharing called MCars. CSS for styling, responsive design.
+Single Spa Application designed for car sharing called MCars. CSS for styling, responsive design.
 Home, Catalog, Login, Register, Create Offer pages.
 Guest users can see Home, Catalog, Login and Register Pages.
 For Details they need to log in or register.
